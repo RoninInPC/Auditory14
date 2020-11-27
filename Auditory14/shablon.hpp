@@ -15,28 +15,24 @@ C<A> create_container(int size) {
 	return a;
 }
 template<class A,template<class E, class Alloc = std::allocator<E>> typename C>
-void Out(C<A> Cont,int size) {
-	for (A i : Cont)
+void Out(C<A> Cont) {
+	for (A& i : Cont)
 	{
 		std::cout << i << ' ';
 	}
 	std::cout << '\n';
 }
-std::map<int, Person> MakeMap(int size,int i) {
+std::map<int, Person> MakeMap(int size) {
 	std::map<int,Person> Ans;
 	Person person;
 	for (int i = 0; i < size; i++) {
 		person=Person::Person();	
 		std::pair <int, Person> p(person.Age, person);
 		Ans.insert(p);
-		/*if (typeid(A) == typeid(std::string)) {
-			std::pair <std::string, Person> p1(person.Class, person);
-			Ans.insert(p1);
-		}*/
 	}
 	return Ans;
 }
-std::map<std::string, Person> MakeMap(int size, char i) {
+std::map<std::string, Person> MakeMap2(int size) {
 	std::map<std::string, Person> Ans;
 	Person person;
 	for (int i = 0; i < size; i++) {
@@ -46,12 +42,13 @@ std::map<std::string, Person> MakeMap(int size, char i) {
 	}
 	return Ans;
 }
-template<class A,class B>
-void Out(std::map<A, B> Map) {
-	typename std::map<A,B>::iterator it2 = Map.begin();
-	for (int i = 0; i < Map.size(); i++) {
-		Person p = it2->second;
-		std::cout << p.Age << ' ' << p.Class << ' ' << p.Family << '\n';
-		it2++;
+std::map<Person, std::string> MakeMapInt(int size) {
+	std::map<Person, std::string> Ans;
+	Person person;
+	for (int i = 0; i < size; i++) {
+		person = Person::Person();
+		std::pair <Person, std::string> p(person, person.Class);
+		Ans.insert(p);
 	}
+	return Ans;
 }
