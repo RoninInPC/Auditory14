@@ -15,7 +15,4 @@ public:
 		this->Class = Cla[rand() % 10]; 
 		this->Age = rand() % 30 + 20; 
 	};
-	int operator<(const Person& Two) {
-		return this->Age < Two.Age;
-	}
 };

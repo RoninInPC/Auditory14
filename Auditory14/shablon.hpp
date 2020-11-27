@@ -22,28 +22,9 @@ void Out(C<A> Cont) {
 	}
 	std::cout << '\n';
 }
-std::map<int, Person> MakeMap(int size) {
-	std::map<int,Person> Ans;
-	Person person;
-	for (int i = 0; i < size; i++) {
-		person=Person::Person();	
-		std::pair <int, Person> p(person.Age, person);
-		Ans.insert(p);
-	}
-	return Ans;
-}
-std::map<std::string, Person> MakeMap2(int size) {
-	std::map<std::string, Person> Ans;
-	Person person;
-	for (int i = 0; i < size; i++) {
-		person = Person::Person();
-		std::pair <std::string, Person> p(person.Class, person);
-		Ans.insert(p);
-	}
-	return Ans;
-}
-std::map<Person, std::string> MakeMapInt(int size) {
-	std::map<Person, std::string> Ans;
+template<class A>
+std::map<Person, std::string,A> MakeMap(int size) {
+	std::map<Person, std::string, A> Ans;
 	Person person;
 	for (int i = 0; i < size; i++) {
 		person = Person::Person();
@@ -51,4 +32,11 @@ std::map<Person, std::string> MakeMapInt(int size) {
 		Ans.insert(p);
 	}
 	return Ans;
+}
+template<class A,class B, class C>
+void Out(std::map<A, B, C> Map) {
+	for (auto it = Map.begin(); it != Map.end(); ++it) {
+		Person p = it->first;
+		std::cout << p.Age << " " << p.Class << " " << p.Family << "\n";
+	}
 }
